@@ -36,3 +36,42 @@ st.markdown("""
 """)
 
 st.markdown(""" 완전신기한 컴언어!!대박이넹ㅋㅋㅋ 존잼임 """)
+
+import matplotlib.pyplot as plt
+import pandas as pd
+
+# 데이터 준비 (예시 데이터)
+years = list(range(2000, 2025))
+house_price_index = [
+    50, 52, 55, 58, 60, 65, 70, 75, 80, 85,  # 2000~2009
+    90, 95, 100, 105, 110, 115, 120, 125, 130, 135,  # 2010~2019
+    140, 145, 150, 155, 160, 165, 170, 175, 180, 185,  # 2020~2024
+]
+
+# 데이터프레임 생성
+data = pd.DataFrame({
+    'Year': years,
+    'House Price Index': house_price_index
+})
+
+# 그래프 그리기
+plt.figure(figsize=(12, 6))
+plt.plot(data['Year'], data['House Price Index'], marker='o', linestyle='-', color='b', label='House Price Index')
+
+# 그래프 제목 및 축 레이블
+plt.title('South Korea House Price Index (2000-2024)', fontsize=16)
+plt.xlabel('Year', fontsize=12)
+plt.ylabel('House Price Index (2005=100)', fontsize=12)
+
+# 주요 이벤트 표시
+plt.annotate('Global Financial Crisis (2008)', xy=(2008, 80), xytext=(2006, 70),
+             arrowprops=dict(facecolor='red', shrink=0.05))
+plt.annotate('COVID-19 Surge (2020-2022)', xy=(2021, 170), xytext=(2018, 160),
+             arrowprops=dict(facecolor='green', shrink=0.05))
+
+# 그리드 및 범례 추가
+plt.grid(True, linestyle='--', alpha=0.6)
+plt.legend()
+
+# 그래프 표시
+plt.show()
